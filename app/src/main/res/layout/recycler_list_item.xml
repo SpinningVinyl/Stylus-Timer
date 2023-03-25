@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/stylusItemLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#EEEEEE"
+    android:padding="15dp">
+
+    <ImageButton
+        android:id="@+id/btnEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:contentDescription="@string/button_edit"
+        android:src="@drawable/twotone_settings_black_48"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvStylusName" />
+
+    <TextView
+        android:id="@+id/tvStylusName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Audio-Technica AT-VM95ML"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvStylusProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Stylus: micro linear"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvStylusName" />
+
+    <TextView
+        android:id="@+id/tvStylusUsage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Usage: 15/750 hrs"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvStylusProfile" />
+
+    <TextView
+        android:id="@+id/tvVTF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="VTF: 2.0g"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvStylusProfile"
+        app:layout_constraintStart_toEndOf="@+id/tvStylusProfile" />
+
+    <TextView
+        android:id="@+id/tvStylusWear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="(wear: low)"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvStylusUsage"
+        app:layout_constraintStart_toEndOf="@+id/tvStylusUsage" />
+
+    <Button
+        android:id="@+id/btnAddSide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/button_add_side"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wearBar" />
+
+    <Button
+        android:id="@+id/btnAddLP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:text="@string/button_add_lp"
+        app:layout_constraintEnd_toStartOf="@+id/btnAddCustom"
+        app:layout_constraintStart_toEndOf="@+id/btnAddSide"
+        app:layout_constraintTop_toTopOf="@+id/btnAddSide" />
+
+    <Button
+        android:id="@+id/btnAddCustom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_add_custom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnAddSide" />
+
+    <ProgressBar
+        android:id="@+id/wearBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvStylusUsage" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
