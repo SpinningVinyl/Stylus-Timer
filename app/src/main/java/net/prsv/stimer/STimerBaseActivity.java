@@ -16,4 +16,6 @@ public abstract class STimerBaseActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
+    public abstract boolean onCreateOptionsMenu(Menu menu);
+
 }
