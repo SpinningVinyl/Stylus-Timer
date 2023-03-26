@@ -7,6 +7,6 @@
         android:id="@+id/action_add"
         android:orderInCategory="100"
         android:title="@string/menu_add_stylus"
-        android:icon="@drawable/add_stylus"
+        android:icon="@drawable/baseline_add_circle_outline_black_48"
         app:showAsAction="always" />
 </menu>
