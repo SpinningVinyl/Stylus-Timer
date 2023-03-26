@@ -4,6 +4,8 @@
 
     <string name="app_name">Stylus Timer</string>
 
+    <string name="menu_add_stylus">Add cartridge/stylus</string>
+
 
     <string name="button_add_side">+ side</string>
     <string name="button_add_lp">+ LP</string>

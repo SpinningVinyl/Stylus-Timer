@@ -3,10 +3,11 @@ package net.prsv.stimer;
 import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class STimerBaseActivity extends AppCompatActivity {
+public abstract class STimerBaseActivity extends AppCompatActivity {
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override

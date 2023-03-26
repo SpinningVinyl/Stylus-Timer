@@ -1,7 +1,10 @@
 package net.prsv.stimer;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,6 +16,10 @@ public class MainActivity extends STimerBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        setSupportActionBar(toolbar);
+
         RecyclerView recycler = findViewById(R.id.stylusView);
         ArrayList<Stylus> mStyli = new ArrayList<>();
 
@@ -44,4 +51,12 @@ public class MainActivity extends STimerBaseActivity {
 
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.app_bar, menu);
+        return true;
+    }
+
+
 }
