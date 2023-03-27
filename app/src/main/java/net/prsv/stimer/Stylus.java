@@ -1,6 +1,6 @@
 package net.prsv.stimer;
 
-public class Stylus {
+public class Stylus implements Comparable<Stylus> {
     private int id;
     private String name;
     private int profileId;
@@ -63,5 +63,10 @@ public class Stylus {
 
     public void setHours(double hours) {
         this.hours = hours;
+    }
+
+    @Override
+    public int compareTo(Stylus that) {
+        return this.name.compareTo(that.name);
     }
 }
