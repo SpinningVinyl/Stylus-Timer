@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "63170014649",
+    "project_id": "net-prsv-stimer",
+    "storage_bucket": "net-prsv-stimer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:63170014649:android:7899b4c4961c6f8b4f1a68",
+        "android_client_info": {
+          "package_name": "net.prsv.stimer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "63170014649-njaedhn8p08gu82gn3v92b8i46nur7a3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.prsv.stimer",
+            "certificate_hash": "5f6eb5ad5ee1ddfa2d01053cd3ed140355f9e1d9"
+          }
+        },
+        {
+          "client_id": "63170014649-no2vv70g53qdbt12122grqqk9a6don3k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJ4cRZuN0tsV-Lxq5ebsWK7ya1Mv6YE2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "63170014649-no2vv70g53qdbt12122grqqk9a6don3k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

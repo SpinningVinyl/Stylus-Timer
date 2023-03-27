@@ -43,6 +43,10 @@ public class MainActivity extends STimerBaseActivity {
         mProfiles.add(new StylusProfile(2, "Elliptical", 450));
         mProfiles.add(new StylusProfile(3, "Shibata", 500));
         mProfiles.add(new StylusProfile(4, "Micro Linear", 750));
+        mProfiles.add(new StylusProfile(5, "Hyperelliptical", 500));
+        mProfiles.add(new StylusProfile(6, "FG I/FG S", 1000));
+
+
 
         StylusViewAdapter adapter = new StylusViewAdapter(this, mStyli, mProfiles);
         recycler.setAdapter(adapter);
