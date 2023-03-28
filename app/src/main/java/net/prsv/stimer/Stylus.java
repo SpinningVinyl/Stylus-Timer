@@ -1,5 +1,7 @@
 package net.prsv.stimer;
 
+import androidx.annotation.NonNull;
+
 public class Stylus implements Comparable<Stylus> {
     private int id;
     private String name;
@@ -69,4 +71,11 @@ public class Stylus implements Comparable<Stylus> {
     public int compareTo(Stylus that) {
         return this.name.compareTo(that.name);
     }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return this.name + ", profileId: " + this.profileId + ", tf: " + this.trackingForce;
+    }
+
 }
