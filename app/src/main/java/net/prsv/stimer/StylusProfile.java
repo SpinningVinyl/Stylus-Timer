@@ -1,5 +1,7 @@
 package net.prsv.stimer;
 
+import androidx.annotation.NonNull;
+
 public class StylusProfile {
 
     private int id;
@@ -27,4 +29,11 @@ public class StylusProfile {
     public int getThreshold() {
         return threshold;
     }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return this.id + ": " + this.name + ", " + threshold + " hours";
+    }
+
 }
