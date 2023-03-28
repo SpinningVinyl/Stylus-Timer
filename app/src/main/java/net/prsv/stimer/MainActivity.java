@@ -1,12 +1,22 @@
 package net.prsv.stimer;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -38,6 +48,26 @@ public class MainActivity extends STimerBaseActivity {
         mStyli.add(testStylus3);
 
         ArrayList<StylusProfile> mProfiles = new ArrayList<>();
+
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
+
+        dbRef.child("Profiles").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                } else {
+                    DataSnapshot result = task.getResult();
+                    for (DataSnapshot child : result.getChildren()) {
+                        StylusProfile profile = child.getValue(StylusProfile.class);
+                        assert profile != null;
+                        Log.d("firebase", profile.toString());
+                    }
+
+                }
+
+            }
+        });
 
         mProfiles.add(new StylusProfile(1, "Spherical", 300));
         mProfiles.add(new StylusProfile(2, "Elliptical", 450));

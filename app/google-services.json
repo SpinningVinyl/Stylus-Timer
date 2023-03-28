@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "63170014649",
+    "firebase_url": "https://net-prsv-stimer-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "net-prsv-stimer",
     "storage_bucket": "net-prsv-stimer.appspot.com"
   },
