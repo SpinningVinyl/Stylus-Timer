@@ -2,6 +2,7 @@ package net.prsv.stimer;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -32,18 +33,75 @@ public class DataHelper extends SQLiteOpenHelper {
 
 
     public Stylus getStylusById(int id) {
-        return new Stylus(id, "dummy", 0, 0, 0);
+        String query = "SELECT * FROM " + STYLUS_TABLE + " WHERE " + COLUMN_STYLUS_ID + " = ? ;";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(id)});
+
+        if (cursor.moveToFirst()) {
+            String name = cursor.getString(1);
+            int profileId = cursor.getInt(2);
+            double trackingForce = cursor.getDouble(3);
+            double hours = cursor.getDouble(4);
+            int customThreshold = cursor.getInt(5);
+            Stylus stylus = new Stylus(id, name, profileId, trackingForce, customThreshold);
+            stylus.setHours(hours);
+            cursor.close();
+            return stylus;
+        }
+
+        return null;
     }
 
     public ArrayList<Stylus> getAllStyli() {
         ArrayList<Stylus> result = new ArrayList<>();
+        String query = "SELECT * FROM " + STYLUS_TABLE + " ORDER BY " + COLUMN_STYLUS_ID + " ASC;";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String name = cursor.getString(1);
+                int profileId = cursor.getInt(2);
+                double trackingForce = cursor.getDouble(3);
+                double hours = cursor.getDouble(4);
+                int customThreshold = cursor.getInt(5);
+                Stylus stylus = new Stylus(id, name, profileId, trackingForce, customThreshold);
+                stylus.setHours(hours);
+                result.add(stylus);
+            } while(cursor.moveToNext());
+        }
+        cursor.close();
+        return result;
+    }
+
+    public ArrayList<StylusProfile> getProfiles() {
+        ArrayList<StylusProfile> result = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM " + PROFILE_TABLE + " ORDER BY " + COLUMN_PROFILE_ID + " ASC;";
+
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String name = cursor.getString(1);
+                int threshold = cursor.getInt(2);
+                StylusProfile profile = new StylusProfile(id, name, threshold);
+                result.add(profile);
+            } while (cursor.moveToNext());
+
+        }
+        cursor.close();
         return result;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createProfileTableStatement = "CREATE TABLE " + PROFILE_TABLE + " (" + COLUMN_PROFILE_ID + " INTEGER PRIMARY KEY, " + COLUMN_PROFILE_NAME + " TEXT, " + COLUMN_PROFILE_THRESHOLD + " INTEGER);";
-        String createStylusTableStatement = "CREATE TABLE " + STYLUS_TABLE + " (" + COLUMN_STYLUS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_STYLUS_NAME + " TEXT, " + COLUMN_STYLUS_PROFILE + " INTEGER NOT NULL, " + COLUMN_STYLUS_TF + " FLOAT, " + COLUMN_STYLUS_HOURS + " FLOAT, " + COLUMN_STYLUS_CUSTOM_THRESHOLD + " INTEGER, FOREIGN KEY(STYLUS_PROFILE) REFERENCES " + PROFILE_TABLE + "(" + COLUMN_PROFILE_ID + "));";
+        String createStylusTableStatement = "CREATE TABLE " + STYLUS_TABLE + " (" + COLUMN_STYLUS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_STYLUS_NAME + " TEXT, " + COLUMN_STYLUS_PROFILE + " INTEGER NOT NULL, " + COLUMN_STYLUS_TF + " FLOAT, " + COLUMN_STYLUS_HOURS + " FLOAT, " + COLUMN_STYLUS_CUSTOM_THRESHOLD + " INTEGER, FOREIGN KEY(" + COLUMN_STYLUS_PROFILE + ") REFERENCES " + PROFILE_TABLE + "(" + COLUMN_PROFILE_ID + "));";
         db.execSQL(createProfileTableStatement);
         db.execSQL(createStylusTableStatement);
 
