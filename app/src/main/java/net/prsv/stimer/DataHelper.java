@@ -1,12 +1,9 @@
 package net.prsv.stimer;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
@@ -27,8 +24,8 @@ public class DataHelper extends SQLiteOpenHelper {
     public static final String COLUMN_STYLUS_HOURS = "STYLUS_HOURS";
     public static final String COLUMN_STYLUS_CUSTOM_THRESHOLD = "STYLUS_CUSTOM_THRESHOLD";
 
-    public DataHelper(@Nullable SQLiteDatabase.CursorFactory factory) {
-        super(STimerApp.getContext(), DB_FILE, factory, 1);
+    public DataHelper() {
+        super(STimerApp.getContext(), DB_FILE, null, 1);
     }
 
 
@@ -96,6 +93,16 @@ public class DataHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         return result;
+    }
+
+    public boolean insertProfile(StylusProfile profile) {
+        assert profile != null;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_PROFILE_ID, profile.getId());
+        cv.put(COLUMN_PROFILE_NAME, profile.getName());
+        cv.put(COLUMN_PROFILE_THRESHOLD, profile.getThreshold());
+        return db.insert(PROFILE_TABLE, null, cv) != -1;
     }
 
     @Override
