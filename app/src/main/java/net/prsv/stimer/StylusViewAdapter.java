@@ -34,9 +34,9 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
 
     private final STimerPreferences preferences = STimerPreferences.getInstance();
 
-    public StylusViewAdapter(Context mContext, @NonNull ArrayList<Stylus> mStyli, @NonNull ArrayList<StylusProfile> stylusProfiles) {
-        this.mContext = mContext;
-        this.mStyli = mStyli;
+    public StylusViewAdapter(Context context, @NonNull ArrayList<Stylus> styli, @NonNull ArrayList<StylusProfile> stylusProfiles) {
+        this.mContext = context;
+        this.mStyli = styli;
         this.mProfiles = new HashMap<>();
         for (StylusProfile sp : stylusProfiles) {
             mProfiles.put(sp.getId(), sp);
@@ -46,7 +46,7 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycler_list_item,
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.stylus_list_item,
                 viewGroup, false);
         return new ViewHolder(view);
     }
@@ -62,20 +62,20 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
 
         setButtonListeners(holder);
 
-        holder.mParentLayout.setBackgroundColor(bgColor);
+        holder.clParentLayout.setBackgroundColor(bgColor);
 
         Stylus stylus = mStyli.get(position);
 
         // display stylus name
-        holder.mStylusName.setText(stylus.getName());
+        holder.tvStylusName.setText(stylus.getName());
 
         // display stylus profile
         StylusProfile profile = mProfiles.get(stylus.getProfileId());
         assert profile != null;
-        holder.mStylusProfile.setText(String.format(mContext.getString(R.string.tv_profile),
+        holder.tvStylusProfile.setText(String.format(mContext.getString(R.string.tv_profile),
                 profile.getName()));
 
-        holder.mVTF.setText(String.format(mContext.getString(R.string.tv_vtf),
+        holder.tvVTF.setText(String.format(mContext.getString(R.string.tv_vtf),
                 stylus.getTrackingForce()));
 
         // determine the wear threshold
@@ -83,31 +83,29 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
                 stylus.getCustomThreshold() != 0 ? stylus.getCustomThreshold() : profile.getThreshold();
 
         // format and display stylus usage
-        holder.mStylusUsage.setText(String.format(mContext.getString(R.string.tv_usage),
+        holder.tvStylusUsage.setText(String.format(mContext.getString(R.string.tv_usage),
                 stylus.getHours(), threshold));
 
         // set max and progress for the progress bar
-        holder.mWearBar.setMax(threshold);
-        holder.mWearBar.setProgress((int) Math.round(stylus.getHours()));
+        holder.pbWearBar.setMax(threshold);
+        holder.pbWearBar.setProgress((int) Math.round(stylus.getHours()));
 
         // calculate and display stylus wear and progress bar color
-        holder.mStylusWear.setText(wearString(threshold, stylus.getHours()));
-        Drawable progressDrawable = holder.mWearBar.getProgressDrawable().mutate();
+        holder.tvStylusWear.setText(wearString(threshold, stylus.getHours()));
+        Drawable progressDrawable = holder.pbWearBar.getProgressDrawable().mutate();
         progressDrawable.setColorFilter(progressBarColor(threshold, stylus.getHours()), android.graphics.PorterDuff.Mode.SRC_IN);
-        holder.mWearBar.setProgressDrawable(progressDrawable);
-
-
+        holder.pbWearBar.setProgressDrawable(progressDrawable);
 
     }
 
     private void setButtonListeners(@NonNull ViewHolder holder) {
 
-        holder.mEdit.setOnClickListener(v -> {
+        holder.ibEdit.setOnClickListener(v -> {
 
         });
 
         // listener for the "+SIDE" button
-        holder.mAddSide.setOnClickListener(v -> {
+        holder.btnAddSide.setOnClickListener(v -> {
             Stylus stylus = mStyli.get(holder.getAdapterPosition());
             double oneSide =
                     preferences.getCustomSide() != 0 ? (double) preferences.getCustomSide() / 60 : ONE_SIDE_DEFAULT;
@@ -116,7 +114,7 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
         });
 
         // listener for the "+LP" button
-        holder.mAddLP.setOnClickListener(v -> {
+        holder.btnAddLP.setOnClickListener(v -> {
             Stylus stylus = mStyli.get(holder.getAdapterPosition());
             double oneLP =
                     preferences.getCustomLP() != 0 ? (double) preferences.getCustomLP() / 60 : ONE_LP_DEFAULT;
@@ -125,7 +123,7 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
         });
 
         // listener for the "+custom time" button
-        holder.mAddCustom.setOnClickListener(v -> {
+        holder.btnAddCustom.setOnClickListener(v -> {
             Stylus stylus = mStyli.get(holder.getAdapterPosition());
 
             // create a new pop-up dialog
@@ -214,26 +212,26 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView mStylusName, mStylusProfile, mVTF, mStylusUsage, mStylusWear;
+        final TextView tvStylusName, tvStylusProfile, tvVTF, tvStylusUsage, tvStylusWear;
 
-        Button mAddSide, mAddLP, mAddCustom;
-        ImageButton mEdit;
-        ConstraintLayout mParentLayout;
-        ProgressBar mWearBar;
+        final Button btnAddSide, btnAddLP, btnAddCustom;
+        final ImageButton ibEdit;
+        final ConstraintLayout clParentLayout;
+        final ProgressBar pbWearBar;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mStylusName = itemView.findViewById(R.id.tvStylusName);
-            mStylusProfile = itemView.findViewById(R.id.tvStylusProfile);
-            mVTF = itemView.findViewById(R.id.tvVTF);
-            mStylusUsage = itemView.findViewById(R.id.tvStylusUsage);
-            mStylusWear = itemView.findViewById(R.id.tvStylusWear);
-            mParentLayout = itemView.findViewById(R.id.stylusItemLayout);
-            mEdit = itemView.findViewById(R.id.btnEdit);
-            mAddSide = itemView.findViewById(R.id.btnAddSide);
-            mAddLP = itemView.findViewById(R.id.btnAddLP);
-            mAddCustom = itemView.findViewById(R.id.btnAddCustom);
-            mWearBar = itemView.findViewById(R.id.wearBar);
+            tvStylusName = itemView.findViewById(R.id.tvStylusName);
+            tvStylusProfile = itemView.findViewById(R.id.tvStylusProfile);
+            tvVTF = itemView.findViewById(R.id.tvVTF);
+            tvStylusUsage = itemView.findViewById(R.id.tvStylusUsage);
+            tvStylusWear = itemView.findViewById(R.id.tvStylusWear);
+            clParentLayout = itemView.findViewById(R.id.clParentLayout);
+            ibEdit = itemView.findViewById(R.id.ibEdit);
+            btnAddSide = itemView.findViewById(R.id.btnAddSide);
+            btnAddLP = itemView.findViewById(R.id.btnAddLP);
+            btnAddCustom = itemView.findViewById(R.id.btnAddCustom);
+            pbWearBar = itemView.findViewById(R.id.pbWearBar);
         }
     }
 }
