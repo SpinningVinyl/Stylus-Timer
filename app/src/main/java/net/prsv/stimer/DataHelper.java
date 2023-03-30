@@ -95,14 +95,14 @@ public class DataHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public boolean insertProfile(StylusProfile profile) {
+    public void insertProfile(StylusProfile profile) {
         assert profile != null;
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_PROFILE_ID, profile.getId());
         cv.put(COLUMN_PROFILE_NAME, profile.getName());
         cv.put(COLUMN_PROFILE_THRESHOLD, profile.getThreshold());
-        return db.insert(PROFILE_TABLE, null, cv) != -1;
+        db.insert(PROFILE_TABLE, null, cv);
     }
 
     @Override
@@ -135,7 +135,7 @@ public class DataHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_STYLUS_TF, stylus.getTrackingForce());
         cv.put(COLUMN_STYLUS_CUSTOM_THRESHOLD, stylus.getCustomThreshold());
         cv.put(COLUMN_STYLUS_HOURS, stylus.getHours());
-        db.update(STYLUS_TABLE, cv, "? = ?", new String[]{COLUMN_STYLUS_ID, String.valueOf(stylus.getId())});
+        db.update(STYLUS_TABLE, cv, COLUMN_STYLUS_ID + " = ?", new String[]{String.valueOf(stylus.getId())});
     }
 
 
