@@ -56,7 +56,7 @@ public class STimerPreferences {
         return dbVersion;
     }
 
-    private boolean isSetupComplete() {
+    protected boolean isSetupComplete() {
         return setupComplete;
     }
 
