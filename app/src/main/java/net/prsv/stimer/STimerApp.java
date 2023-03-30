@@ -1,6 +1,10 @@
 package net.prsv.stimer;
 
 import android.app.Application;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 
 /**
  * Represents the Stylus Timer application. Provides global context for use in custom classes.
@@ -23,6 +27,15 @@ public class STimerApp extends Application {
      */
     public static STimerApp getContext() {
         return mContext;
+    }
+
+    public static void restart(Context context) {
+        PackageManager packageManager = context.getPackageManager();
+        Intent intent = packageManager.getLaunchIntentForPackage(context.getPackageName());
+        ComponentName componentName = intent.getComponent();
+        Intent mainIntent = Intent.makeRestartActivityTask(componentName);
+        context.startActivity(mainIntent);
+        Runtime.getRuntime().exit(0);
     }
 
 }
