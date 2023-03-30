@@ -67,6 +67,10 @@ public class Stylus implements Comparable<Stylus> {
         this.hours = hours;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public int compareTo(Stylus that) {
         return this.name.compareTo(that.name);
