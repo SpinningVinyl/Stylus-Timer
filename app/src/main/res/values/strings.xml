@@ -6,11 +6,22 @@
 
     <string name="menu_add_stylus">Add cartridge/stylus</string>
 
+    <string name="welcome_message_1">Welcome to the Stylus Timer app!</string>
+    <string name="welcome_message_2">Press Continue to download stylus profile data.</string>
+
+    <string name="setup_error_1">Error</string>
+    <string name="setup_error_2">There was an error. Restart the application and try again.</string>
+
+    <string name="setup_complete_1">Setup complete!</string>
+    <string name="setup_complete_2">All done. Please restart the application.</string>
+
 
     <string name="button_add_side">+ side</string>
     <string name="button_add_lp">+ LP</string>
     <string name="button_add_custom">+ custom time</string>
     <string name="button_edit">Edit</string>
+    <string name="button_continue">Continue</string>
+    <string name="button_restart">Restart</string>
 
     <string name="tv_profile">Profile: %s</string>
     <string name="tv_vtf">VTF: %.2fg</string>
