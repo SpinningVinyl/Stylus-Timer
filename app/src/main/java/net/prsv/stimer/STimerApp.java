@@ -2,7 +2,6 @@ package net.prsv.stimer;
 
 import android.app.Application;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 
@@ -29,12 +28,12 @@ public class STimerApp extends Application {
         return mContext;
     }
 
-    public static void restart(Context context) {
-        PackageManager packageManager = context.getPackageManager();
-        Intent intent = packageManager.getLaunchIntentForPackage(context.getPackageName());
+    public static void restart() {
+        PackageManager packageManager = getContext().getPackageManager();
+        Intent intent = packageManager.getLaunchIntentForPackage(getContext().getPackageName());
         ComponentName componentName = intent.getComponent();
         Intent mainIntent = Intent.makeRestartActivityTask(componentName);
-        context.startActivity(mainIntent);
+        getContext().startActivity(mainIntent);
         Runtime.getRuntime().exit(0);
     }
 
