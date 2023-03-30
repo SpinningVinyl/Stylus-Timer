@@ -15,6 +15,8 @@
     <string name="setup_complete_1">Setup complete!</string>
     <string name="setup_complete_2">All done. Please restart the application.</string>
 
+    <string name="add_cartridge">Press the + button to add a cartridge</string>
+
 
     <string name="button_add_side">+ side</string>
     <string name="button_add_lp">+ LP</string>

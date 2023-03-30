@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -50,9 +51,13 @@ public class MainActivity extends STimerBaseActivity {
 
             ArrayList<Stylus> styli = helper.getAllStyli();
 
+
             adapter = new StylusViewAdapter(this, styli, profiles);
             recycler.setAdapter(adapter);
             recycler.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+            if (styli.size() == 0) {
+                Toast.makeText(this, R.string.add_cartridge, Toast.LENGTH_LONG).show();
+            }
         }
     }
 
