@@ -110,6 +110,9 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
             double oneSide =
                     preferences.getCustomSide() != 0 ? (double) preferences.getCustomSide() / 60 : ONE_SIDE_DEFAULT;
             stylus.setHours(stylus.getHours() + oneSide);
+            try(DataHelper helper = new DataHelper()) {
+                helper.updateStylus(stylus);
+            }
             notifyItemChanged(holder.getAdapterPosition());
         });
 
@@ -119,6 +122,9 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
             double oneLP =
                     preferences.getCustomLP() != 0 ? (double) preferences.getCustomLP() / 60 : ONE_LP_DEFAULT;
             stylus.setHours(stylus.getHours() + oneLP);
+            try(DataHelper helper = new DataHelper()) {
+                helper.updateStylus(stylus);
+            }
             notifyItemChanged(holder.getAdapterPosition());
         });
 
@@ -155,6 +161,9 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
                 int customTime = Integer.parseInt(input.getText().toString());
                 double customTimeInHours = (double) customTime / 60;
                 stylus.setHours(stylus.getHours() + customTimeInHours);
+                try(DataHelper helper = new DataHelper()) {
+                    helper.updateStylus(stylus);
+                }
                 notifyItemChanged(holder.getAdapterPosition());
             });
 
