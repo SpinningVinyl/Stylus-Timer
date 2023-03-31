@@ -83,7 +83,7 @@ public class Stylus implements Comparable<Stylus>, Serializable {
     @NonNull
     @Override
     public String toString() {
-        return this.name + ", profileId: " + this.profileId + ", tf: " + this.trackingForce;
+        return this.name;
     }
 
 }
