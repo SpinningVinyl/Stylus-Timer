@@ -43,8 +43,4 @@
     <string name="add_new_cartridge_dialog_message">You can select a cartridge from our precompiled list of popular models, or add one manually.</string>
 
 
-
-    <string name="border">RecyclerView item border</string>
-
-
 </resources>
