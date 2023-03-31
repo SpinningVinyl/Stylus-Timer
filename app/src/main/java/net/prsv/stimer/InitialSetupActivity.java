@@ -30,9 +30,9 @@ public class InitialSetupActivity extends STimerBaseActivity {
     private void performSetup(View v) {
         STimerPreferences preferences = STimerPreferences.getInstance();
 
-        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference();
         try(DataHelper helper = new DataHelper()) {
-            dbRef.child("Profiles").get().addOnCompleteListener(task -> {
+            db.child("Profiles").get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     DataSnapshot result = task.getResult();
                     for (DataSnapshot child : result.getChildren()) {
