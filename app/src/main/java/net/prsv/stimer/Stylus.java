@@ -2,13 +2,17 @@ package net.prsv.stimer;
 
 import androidx.annotation.NonNull;
 
-public class Stylus implements Comparable<Stylus> {
+import java.io.Serializable;
+
+public class Stylus implements Comparable<Stylus>, Serializable {
     private int id;
     private String name;
     private int profileId;
     private double trackingForce;
     private double hours;
     private int customThreshold;
+
+    private static final long serialVersionUID = 246213005L;
 
     private Stylus() {
         // empty default constructor required for calls to DataSnapshot.getValue(Stylus.class)
