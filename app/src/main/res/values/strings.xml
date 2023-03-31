@@ -24,6 +24,10 @@
     <string name="button_edit">Edit</string>
     <string name="button_continue">Continue</string>
     <string name="button_restart">Restart</string>
+    <string name="button_ok">OK</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_add_manually">Add manually</string>
+    <string name="button_select_from_list">Select from list</string>
 
     <string name="tv_profile">Profile: %s</string>
     <string name="tv_vtf">VTF: %.2fg</string>
@@ -33,6 +37,12 @@
     <string name="tv_wear_medium">medium</string>
     <string name="tv_wear_high">high</string>
     <string name="tv_wear_replace">replace ASAP!</string>
+
+    <string name="enter_time_in_minutes">Enter custom time (in minutes)</string>
+    <string name="add_new_cartridge_dialog_title">Add a new cartridge</string>
+    <string name="add_new_cartridge_dialog_message">You can select a cartridge from our precompiled list of popular models, or add one manually.</string>
+
+
 
     <string name="border">RecyclerView item border</string>
 
