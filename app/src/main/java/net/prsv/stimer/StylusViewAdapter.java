@@ -134,7 +134,7 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
 
             // create a new pop-up dialog
             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mContext);
-            dialogBuilder.setTitle("Enter custom time (in minutes)");
+            dialogBuilder.setTitle(R.string.enter_time_in_minutes);
 
             // create an edit field
             final EditText input = new EditText(mContext);
@@ -157,7 +157,7 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
             dialogBuilder.setView(input);
 
             // OK button + event handler
-            dialogBuilder.setPositiveButton("OK", (dialog, which) -> {
+            dialogBuilder.setPositiveButton(R.string.button_ok, (dialog, which) -> {
                 int customTime = Integer.parseInt(input.getText().toString());
                 double customTimeInHours = (double) customTime / 60;
                 stylus.setHours(stylus.getHours() + customTimeInHours);
@@ -168,7 +168,7 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
             });
 
             // cancel button
-            dialogBuilder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+            dialogBuilder.setNegativeButton(R.string.button_cancel, (dialog, which) -> dialog.cancel());
 
             // show the dialog
             dialogBuilder.show();
