@@ -37,6 +37,9 @@
     <string name="tv_wear_medium">medium</string>
     <string name="tv_wear_high">high</string>
     <string name="tv_wear_replace">replace ASAP!</string>
+    <string name="tv_add_from_list">Choose cartridge from the list and press OK to save your selection.</string>
+
+    <string name="error_adding_cartridge">There was an error adding the cartridge</string>
 
     <string name="enter_time_in_minutes">Enter custom time (in minutes)</string>
     <string name="add_new_cartridge_dialog_title">Add a new cartridge</string>

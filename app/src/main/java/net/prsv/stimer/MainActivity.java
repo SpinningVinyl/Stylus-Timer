@@ -1,12 +1,21 @@
 package net.prsv.stimer;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +26,9 @@ public class MainActivity extends STimerBaseActivity {
 
     private RecyclerView recycler;
     private StylusViewAdapter adapter;
+    private ActivityResultLauncher<Intent> addStylusLauncher;
+
+    public static String STYLUS_ID_RETURN_KEY = "STYLUS_ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +55,28 @@ public class MainActivity extends STimerBaseActivity {
             prepareStylusViewAdapter();
         }
 
+        // register an activity result callback for adding styli
+        addStylusLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::addStylusResultHandler);
+
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private void addStylusResultHandler(@NonNull ActivityResult result) {
+        if (result.getResultCode() == Activity.RESULT_OK) {
+            Intent returnIntent = result.getData();
+            assert returnIntent != null;
+            int returnValue = returnIntent.getIntExtra(STYLUS_ID_RETURN_KEY, -1);
+            if (returnValue == -1) {
+                Toast.makeText(this, R.string.error_adding_cartridge, Toast.LENGTH_LONG).show();
+            } else {
+                try (DataHelper helper = new DataHelper()) {
+                    Stylus stylus = helper.getStylusById(returnValue);
+                    adapter.addToDataSet(stylus);
+                    adapter.notifyItemInserted(adapter.getItemCount() - 1);
+                }
+            }
+
+        }
     }
 
     private void prepareStylusViewAdapter() {
@@ -67,15 +101,37 @@ public class MainActivity extends STimerBaseActivity {
         return true;
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private void resetStylusData() {
-        adapter.clearDataSet();
-        adapter.notifyDataSetChanged();
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_add) {
+
+            // create a new pop-up dialog
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+            dialogBuilder.setTitle(R.string.add_new_cartridge_dialog_title);
+
+            // create a text view for displaying the message
+            final TextView addStylusMessage = new TextView(this);
+            addStylusMessage.setPadding(64,32,32,32);
+            addStylusMessage.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+            addStylusMessage.setText(R.string.add_new_cartridge_dialog_message);
+
+            // put the text view inside the dialog
+            dialogBuilder.setView(addStylusMessage);
+
+
+            // "Add manually" button + event handler
+            dialogBuilder.setPositiveButton(R.string.button_add_manually, (dialog, which) -> {
+
+            });
+
+            // "Select from list" button + event handler
+            dialogBuilder.setNeutralButton(R.string.button_select_from_list, (dialog, which) -> {
+                Intent selectFromListIntent = new Intent(this, AddStylusFromListActivity.class);
+                addStylusLauncher.launch(selectFromListIntent);
+            });
+
+            // show the dialog
+            dialogBuilder.show();
             return true;
         }
         return super.onOptionsItemSelected(item);
