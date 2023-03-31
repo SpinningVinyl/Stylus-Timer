@@ -3,6 +3,7 @@ package net.prsv.stimer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -13,6 +14,7 @@ public class InitialSetupActivity extends STimerBaseActivity {
 
     Button btnContinue;
     TextView tvWelcomeMessage1, tvWelcomeMessage2;
+    ImageView ivSplash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,8 @@ public class InitialSetupActivity extends STimerBaseActivity {
         btnContinue = findViewById(R.id.btnContinue);
         tvWelcomeMessage1 = findViewById(R.id.tvWelcomeMessage1);
         tvWelcomeMessage2 = findViewById(R.id.tvWelcomeMessage2);
+        ivSplash = findViewById(R.id.ivSplash);
+        ivSplash.setClipToOutline(true);
 
         btnContinue.setOnClickListener(this::performSetup);
 
