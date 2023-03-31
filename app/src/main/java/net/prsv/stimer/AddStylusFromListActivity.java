@@ -12,6 +12,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class AddStylusFromListActivity extends STimerBaseActivity {
 
@@ -35,6 +36,7 @@ public class AddStylusFromListActivity extends STimerBaseActivity {
                     assert stylus != null;
                     stylusList.add(stylus);
                 }
+                Collections.sort(stylusList);
                 ArrayAdapter<Stylus> spinnerAdapter = new ArrayAdapter<>(AddStylusFromListActivity.this, android.R.layout.simple_spinner_item, stylusList);
                 spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinnerStyli.setAdapter(spinnerAdapter);
