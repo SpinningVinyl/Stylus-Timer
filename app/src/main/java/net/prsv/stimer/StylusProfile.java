@@ -59,6 +59,9 @@ public class StylusProfile implements Comparable<StylusProfile> {
 
     @Override
     public int compareTo(StylusProfile that) {
-        return this.name.compareTo(that.name);
+        if (this.threshold == that.threshold) {
+            return this.name.compareTo(that.name);
+        }
+        return Integer.compare(this.threshold, that.threshold);
     }
 }
