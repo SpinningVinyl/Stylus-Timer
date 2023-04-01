@@ -40,6 +40,7 @@ public class AddStylusManuallyActivity extends STimerBaseActivity {
         etCartridgeName = findViewById(R.id.etCartridgeName);
         etTrackingForce = findViewById(R.id.etTrackingForce);
         etCustomThreshold = findViewById(R.id.etCustomThreshold);
+        etCustomThreshold.setText("0");
 
         // get a list of stylus profiles and populate the spinner
         try(DataHelper helper = new DataHelper()) {
