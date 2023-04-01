@@ -121,6 +121,9 @@ public class Stylus implements Comparable<Stylus>, Serializable {
      * @param hours -- number of hours
      */
     public void setHours(double hours) {
+        if (hours < 0) {
+            throw new IllegalArgumentException("Number of hours can't be negative");
+        }
         this.hours = hours;
     }
 
