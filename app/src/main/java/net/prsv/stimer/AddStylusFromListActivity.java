@@ -69,4 +69,11 @@ public class AddStylusFromListActivity extends STimerBaseActivity {
         setResult(RESULT_OK, returnDataIntent);
         finish();
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
 }
