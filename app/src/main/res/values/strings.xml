@@ -42,7 +42,7 @@
     <string name="error_adding_cartridge">There was an error adding the cartridge</string>
 
     <string name="enter_time_in_minutes">Enter custom time (in minutes)</string>
-    <string name="add_new_cartridge_dialog_title">Add a new cartridge</string>
+    <string name="add_new_cartridge_title">Add a new cartridge</string>
     <string name="add_new_cartridge_dialog_message">You can select a cartridge from our precompiled list of popular models, or add one manually.</string>
 
 

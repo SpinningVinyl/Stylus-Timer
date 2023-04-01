@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,7 +35,7 @@ public class MainActivity extends STimerBaseActivity {
         setContentView(R.layout.activity_main);
 
         // set the custom toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        Toolbar toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
         // find the RecyclerView
@@ -107,7 +106,7 @@ public class MainActivity extends STimerBaseActivity {
 
             // create a new pop-up dialog
             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-            dialogBuilder.setTitle(R.string.add_new_cartridge_dialog_title);
+            dialogBuilder.setTitle(R.string.add_new_cartridge_title);
 
             // create a text view for displaying the message
             final TextView addStylusMessage = new TextView(this);
