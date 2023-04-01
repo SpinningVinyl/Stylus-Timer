@@ -120,7 +120,8 @@ public class MainActivity extends STimerBaseActivity {
 
             // "Add manually" button + event handler
             dialogBuilder.setPositiveButton(R.string.button_add_manually, (dialog, which) -> {
-
+                Intent addManuallyIntent = new Intent(this, AddStylusManuallyActivity.class);
+                addStylusLauncher.launch(addManuallyIntent);
             });
 
             // "Select from list" button + event handler
