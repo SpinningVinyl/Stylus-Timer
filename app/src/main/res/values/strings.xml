@@ -12,6 +12,8 @@
     <string name="setup_error_1">Error</string>
     <string name="setup_error_2">There was an error. Restart the application and try again.</string>
 
+    <string name="download_error">There was an error downloading data</string>
+
     <string name="setup_complete_1">Setup complete!</string>
     <string name="setup_complete_2">All done. Please restart the application.</string>
 

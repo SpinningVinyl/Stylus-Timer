@@ -3,6 +3,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#FFEAEAEA</color>
 
+    <color name="red">#FFFF0000</color>
+    <color name="green">#FF00FF00</color>
+
     <color name="pb_wear_low">#FF00BFA5</color>
     <color name="pb_wear_medium">#FFFFAB00</color>
     <color name="pb_wear_high">#FFD50000</color>

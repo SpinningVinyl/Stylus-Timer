@@ -20,6 +20,9 @@ public class STimerPreferences {
     private final String SETUP_COMPLETE_KEY = "SETUP_COMPLETE";
     private final String DB_VERSION_KEY = "DB_VERSION";
 
+    public final static String RTDB_CARTRIDGES_PATH = "Cartridges";
+    public final static String RTDB_PROFILES_PATH = "Profiles";
+
     /**
      * Private constructor means that only one instance of this class can exist.
      */
