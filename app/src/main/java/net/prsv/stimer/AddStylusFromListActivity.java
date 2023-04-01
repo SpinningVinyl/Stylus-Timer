@@ -7,6 +7,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -23,6 +26,15 @@ public class AddStylusFromListActivity extends STimerBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_stylus_from_list);
+
+        Toolbar toolbar = findViewById(R.id.add_from_list_toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar supportActionBar = getSupportActionBar();
+        assert supportActionBar != null;
+        supportActionBar.setDisplayHomeAsUpEnabled(true);
+        supportActionBar.setDisplayShowHomeEnabled(true);
+        supportActionBar.setTitle(R.string.add_new_cartridge_title);
+
 
         spinnerStyli = findViewById(R.id.spinnerStyli);
         Button btnOk = findViewById(R.id.btnOk);
@@ -46,11 +58,9 @@ public class AddStylusFromListActivity extends STimerBaseActivity {
 
     }
 
-
-
     public void returnData(View v) {
         Stylus stylus = (Stylus) spinnerStyli.getSelectedItem();
-        int returnValue;
+        int returnValue = -1;
         Intent returnDataIntent = new Intent();
         try(DataHelper helper = new DataHelper()) {
             returnValue = helper.insertStylus(stylus);
