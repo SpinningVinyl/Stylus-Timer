@@ -76,11 +76,11 @@ public class InitialSetupActivity extends STimerBaseActivity {
 
         // the following extremely ugly code is necessary to handle Firebase timeouts
         // because Google did not bother to provide appropriate solutions in their API
-        Timer timer = new Timer();
-        TimerTask timerTask = new TimerTask() {
+        Timer timeoutTimer = new Timer();
+        TimerTask timeoutTask = new TimerTask() {
             @Override
             public void run() {
-                timer.cancel();
+                timeoutTimer.cancel();
                 if (!success.get()) {
                     // remove the listener from the database reference
                     db.removeEventListener(dataFetchListener);
@@ -94,8 +94,8 @@ public class InitialSetupActivity extends STimerBaseActivity {
                 }
             }
         };
-        // set the timer delay to 1s
-        timer.schedule(timerTask, 1000L);
+        // set timer delay to 2s
+        timeoutTimer.schedule(timeoutTask, 2000L);
         btnContinue.setText(getString(R.string.button_restart));
         btnContinue.setOnClickListener(this::restartApp);
 
