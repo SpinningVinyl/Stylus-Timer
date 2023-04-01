@@ -1,6 +1,5 @@
 package net.prsv.stimer;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -53,7 +52,7 @@ public class AddStylusFromListActivity extends STimerBaseActivity {
         supportActionBar.setTitle(R.string.add_new_cartridge_title);
 
         // set up the UI widgets
-        spinnerStyli = findViewById(R.id.spinnerStyli);
+        spinnerStyli = findViewById(R.id.spinnerProfiles);
         btnOk = findViewById(R.id.btnOk);
 
         fetchCartridgeData();
