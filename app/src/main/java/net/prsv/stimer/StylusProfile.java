@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
  * Each stylus profile has three parameters: ID, name and threshold (the number of hours a stylus of this profile can be used before replacement)
  * @author Pavel Urusov 2023
  */
-public class StylusProfile {
+public class StylusProfile implements Comparable<StylusProfile> {
 
     private int id;
     private String name;
@@ -54,7 +54,11 @@ public class StylusProfile {
     @NonNull
     @Override
     public String toString() {
-        return this.name;
+        return this.name + " (" + this.threshold + " hrs)";
     }
 
+    @Override
+    public int compareTo(StylusProfile that) {
+        return this.name.compareTo(that.name);
+    }
 }
