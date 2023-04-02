@@ -54,6 +54,7 @@
     <string name="enter_time_in_minutes">Enter custom time (in minutes)</string>
     <string name="add_new_cartridge_title">Add a new cartridge</string>
     <string name="add_new_cartridge_dialog_message">You can select a cartridge from our precompiled list of popular models, or add one manually.</string>
+    <string name="edit_cartridge_title">Cartridge properties</string>
 
 
 </resources>
