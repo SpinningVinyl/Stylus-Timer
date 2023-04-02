@@ -7,6 +7,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+/**
+ * The {@link DataHelper} class contains methods for storing {@link Stylus} and
+ * {@link StylusProfile} objects in the database and retrieving them from the local
+ * SQLite database.
+ */
 public class DataHelper extends SQLiteOpenHelper {
 
     public static final String DB_FILE = "styli.db";
@@ -24,11 +29,19 @@ public class DataHelper extends SQLiteOpenHelper {
     public static final String COLUMN_STYLUS_HOURS = "STYLUS_HOURS";
     public static final String COLUMN_STYLUS_CUSTOM_THRESHOLD = "STYLUS_CUSTOM_THRESHOLD";
 
+    /**
+     * Creates a new {@link DataHelper} object.
+     */
     public DataHelper() {
         super(STimerApp.getContext(), DB_FILE, null, 1);
     }
 
 
+    /**
+     * Retrieves a single {@link Stylus} object from the database.
+     * @param id stylus ID
+     * @return the stylus object retrieved from the database
+     */
     public Stylus getStylus(int id) {
         String query = "SELECT * FROM " + STYLUS_TABLE + " WHERE " + COLUMN_STYLUS_ID + " = ? ;";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -50,6 +63,10 @@ public class DataHelper extends SQLiteOpenHelper {
         return null;
     }
 
+    /**
+     * Returns all {@link Stylus} objects stored in the local database
+     * @return an {@link ArrayList} containing all styli stored in the database
+     */
     public ArrayList<Stylus> getAllStyli() {
         ArrayList<Stylus> result = new ArrayList<>();
         String query = "SELECT * FROM " + STYLUS_TABLE + " ORDER BY " + COLUMN_STYLUS_ID + " ASC;";
@@ -74,6 +91,10 @@ public class DataHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    /**
+     * Returns all {@link StylusProfile} objects stored in the local database
+     * @return an {@link ArrayList} containing all stylus profiles stored in the database
+     */
     public ArrayList<StylusProfile> getAllProfiles() {
         ArrayList<StylusProfile> result = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -95,6 +116,11 @@ public class DataHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    /**
+     * Retrieves a single {@link StylusProfile} object from the database.
+     * @param id profile ID
+     * @return {@link StylusProfile} object retrieved from the database
+     */
     public StylusProfile getProfile(int id) {
         String query = "SELECT * FROM " + PROFILE_TABLE + " WHERE " + COLUMN_PROFILE_ID + " = ? ;";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -110,6 +136,10 @@ public class DataHelper extends SQLiteOpenHelper {
         return null;
     }
 
+    /**
+     * Creates a new DB record containing a {@link StylusProfile} object.
+     * @param profile the {@link StylusProfile} object to store in the database
+     */
     public void insertProfile(StylusProfile profile) {
         assert profile != null;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -120,6 +150,10 @@ public class DataHelper extends SQLiteOpenHelper {
         db.insert(PROFILE_TABLE, null, cv);
     }
 
+    /**
+     * Called when the database is accessed for the first time.
+     * @param db The database.
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createProfileTableStatement = "CREATE TABLE " + PROFILE_TABLE + " (" + COLUMN_PROFILE_ID + " INTEGER PRIMARY KEY, " + COLUMN_PROFILE_NAME + " TEXT, " + COLUMN_PROFILE_THRESHOLD + " INTEGER);";
@@ -129,6 +163,11 @@ public class DataHelper extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * Creates a new DB record containing a {@link Stylus} object.
+     * @param stylus {@link Stylus} object to be saved in the database
+     * @return the ID (primary key) of the saved record
+     */
     public int insertStylus(Stylus stylus) {
         assert stylus != null;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -141,6 +180,10 @@ public class DataHelper extends SQLiteOpenHelper {
         return (int) db.insert(STYLUS_TABLE, null, cv);
     }
 
+    /**
+     * Updates the DB record containing {@code stylus}
+     * @param stylus {@link Stylus} object to be updated
+     */
     public void updateStylus(Stylus stylus) {
         assert stylus != null;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -153,6 +196,10 @@ public class DataHelper extends SQLiteOpenHelper {
         db.update(STYLUS_TABLE, cv, COLUMN_STYLUS_ID + " = ?", new String[]{String.valueOf(stylus.getId())});
     }
 
+    /**
+     * Delete a record containing a {@link Stylus} from the database
+     * @param id stylus ID
+     */
     public void deleteStylus(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(STYLUS_TABLE, COLUMN_STYLUS_ID + " = ?", new String[]{String.valueOf(id)});
