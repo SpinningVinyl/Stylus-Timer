@@ -122,8 +122,8 @@ public class MainActivity extends STimerBaseActivity implements EditStylusClickL
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // user selects the + option
         if (item.getItemId() == R.id.action_add) {
-
             // create a new pop-up dialog
             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
             dialogBuilder.setTitle(R.string.add_new_cartridge_title);
@@ -152,6 +152,10 @@ public class MainActivity extends STimerBaseActivity implements EditStylusClickL
 
             // show the dialog
             dialogBuilder.show();
+            return true;
+        } else if (item.getItemId() == R.id.action_preferences) { // user selects App preferences
+            Intent preferencesIntent = new Intent(this, PreferencesActivity.class);
+            startActivity(preferencesIntent);
             return true;
         }
         return super.onOptionsItemSelected(item);
