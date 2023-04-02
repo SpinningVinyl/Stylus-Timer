@@ -29,7 +29,7 @@ public class DataHelper extends SQLiteOpenHelper {
     }
 
 
-    public Stylus getStylusById(int id) {
+    public Stylus getStylus(int id) {
         String query = "SELECT * FROM " + STYLUS_TABLE + " WHERE " + COLUMN_STYLUS_ID + " = ? ;";
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -95,7 +95,7 @@ public class DataHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public StylusProfile getProfileById(int id) {
+    public StylusProfile getProfile(int id) {
         String query = "SELECT * FROM " + PROFILE_TABLE + " WHERE " + COLUMN_PROFILE_ID + " = ? ;";
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -153,6 +153,10 @@ public class DataHelper extends SQLiteOpenHelper {
         db.update(STYLUS_TABLE, cv, COLUMN_STYLUS_ID + " = ?", new String[]{String.valueOf(stylus.getId())});
     }
 
+    public void deleteStylus(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(STYLUS_TABLE, COLUMN_STYLUS_ID + " = ?", new String[]{String.valueOf(id)});
+    }
 
 
     @Override
