@@ -21,13 +21,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends STimerBaseActivity {
+public class MainActivity extends STimerBaseActivity implements EditStylusClickListener {
 
     private RecyclerView recycler;
     private StylusViewAdapter adapter;
-    private ActivityResultLauncher<Intent> addStylusLauncher;
+    private ActivityResultLauncher<Intent> addLauncher, editLauncher;
 
-    public static String STYLUS_ID_RETURN_KEY = "STYLUS_ID";
+    public static String STYLUS_ID_KEY = "STYLUS_ID";
+    public static String ADAPTER_POSITION_KEY = "ADAPTER_POSITION";
+    public static String RETURN_RESULT_KEY = "RETURN_RESULT";
+    public static int RESULT_DELETE_STYLUS = 101;
+    public static int RESULT_EDIT_STYLUS = 102;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,32 +59,42 @@ public class MainActivity extends STimerBaseActivity {
         }
 
         // register an activity result callback for adding styli
-        addStylusLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::addStylusResultHandler);
-
+        addLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::addResultHandler);
+        editLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::editResultHandler);
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private void addStylusResultHandler(@NonNull ActivityResult result) {
+    private void addResultHandler(@NonNull ActivityResult result) {
         if (result.getResultCode() == Activity.RESULT_OK) {
             Intent returnIntent = result.getData();
             assert returnIntent != null;
-            int returnValue = returnIntent.getIntExtra(STYLUS_ID_RETURN_KEY, -1);
-            if (returnValue == -1) {
+            int stylusID = returnIntent.getIntExtra(STYLUS_ID_KEY, -1);
+            if (stylusID == -1) {
                 Toast.makeText(this, R.string.error_adding_cartridge, Toast.LENGTH_LONG).show();
             } else {
                 try (DataHelper helper = new DataHelper()) {
-                    Stylus stylus = helper.getStylusById(returnValue);
+                    Stylus stylus = helper.getStylusById(stylusID);
                     adapter.addToDataSet(stylus);
                     adapter.notifyItemInserted(adapter.getItemCount() - 1);
                 }
             }
-
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private void editResultHandler(@NonNull ActivityResult result) {
+            try(DataHelper helper = new DataHelper()) {
+                ArrayList<Stylus> styli = helper.getAllStyli();
+                adapter.clearDataSet();
+                for (Stylus stylus : styli) {
+                    adapter.addToDataSet(stylus);
+                }
+                adapter.notifyDataSetChanged();
+            }
     }
 
     private void prepareStylusViewAdapter() {
         try(DataHelper helper = new DataHelper()) {
-            ArrayList<StylusProfile> profiles = helper.getProfiles();
+            ArrayList<StylusProfile> profiles = helper.getAllProfiles();
 
             ArrayList<Stylus> styli = helper.getAllStyli();
 
@@ -121,13 +135,13 @@ public class MainActivity extends STimerBaseActivity {
             // "Add manually" button + event handler
             dialogBuilder.setPositiveButton(R.string.button_add_manually, (dialog, which) -> {
                 Intent addManuallyIntent = new Intent(this, AddStylusManuallyActivity.class);
-                addStylusLauncher.launch(addManuallyIntent);
+                addLauncher.launch(addManuallyIntent);
             });
 
             // "Select from list" button + event handler
             dialogBuilder.setNeutralButton(R.string.button_select_from_list, (dialog, which) -> {
                 Intent selectFromListIntent = new Intent(this, AddStylusFromListActivity.class);
-                addStylusLauncher.launch(selectFromListIntent);
+                addLauncher.launch(selectFromListIntent);
             });
 
             // show the dialog
@@ -137,4 +151,11 @@ public class MainActivity extends STimerBaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void callEditStylusActivity(int stylusId, int adapterPosition) {
+        Intent editStylusIntent = new Intent(this, EditStylusActivity.class);
+        editStylusIntent.putExtra(STYLUS_ID_KEY, stylusId);
+        editStylusIntent.putExtra(ADAPTER_POSITION_KEY, adapterPosition);
+        editLauncher.launch(editStylusIntent);
+    }
 }
