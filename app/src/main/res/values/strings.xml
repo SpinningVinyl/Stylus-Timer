@@ -30,22 +30,27 @@
     <string name="button_cancel">Cancel</string>
     <string name="button_add_manually">Add manually</string>
     <string name="button_select_from_list">Select from list</string>
+    <string name="button_reset_hours">Reset usage counter</string>
+    <string name="button_set_custom_threshold">Set custom threshold</string>
+    <string name="button_delete">Delete cartridge</string>
+    <string name="button_return">Return to the main screen</string>
 
     <string name="tv_profile">Profile: %s</string>
     <string name="tv_vtf">VTF: %.2fg</string>
     <string name="tv_usage">Usage: %.2f/%d hrs</string>
+    <string name="tv_props_usage">Usage: %.2f hours</string>
     <string name="tv_wear_template">(wear: %s)</string>
     <string name="tv_wear_low">low</string>
     <string name="tv_wear_medium">medium</string>
     <string name="tv_wear_high">high</string>
     <string name="tv_wear_replace">replace ASAP!</string>
     <string name="tv_add_from_list">Choose cartridge from the list and press OK to save your selection.</string>
-
     <string name="tv_cartridge_name">Cartridge name:</string>
-    <string name="et_cartridge_name">Enter cartridge name here</string>
     <string name="tv_stylus_profile">Stylus profile:</string>
     <string name="tv_tracking_force">Vertical tracking force (grams):</string>
     <string name="tv_custom_threshold">Custom threshold (hours). If not set to 0, this value would override the default threshold for the selected stylus profile:</string>
+
+    <string name="et_cartridge_name">Enter cartridge name here</string>
 
     <string name="error_adding_cartridge">There was an error adding the cartridge</string>
     <string name="error_getting_profiles">There was an error getting profile data</string>
