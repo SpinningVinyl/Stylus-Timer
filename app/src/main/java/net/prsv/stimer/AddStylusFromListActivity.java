@@ -121,7 +121,7 @@ public class AddStylusFromListActivity extends STimerBaseActivity {
         try(DataHelper helper = new DataHelper()) {
             returnValue = helper.insertStylus(stylus);
         }
-        returnDataIntent.putExtra(MainActivity.STYLUS_ID_RETURN_KEY, returnValue);
+        returnDataIntent.putExtra(MainActivity.STYLUS_ID_KEY, returnValue);
         setResult(RESULT_OK, returnDataIntent);
         finish();
     }

@@ -44,7 +44,7 @@ public class AddStylusManuallyActivity extends STimerBaseActivity {
 
         // get a list of stylus profiles and populate the spinner
         try(DataHelper helper = new DataHelper()) {
-            profileList = helper.getProfiles();
+            profileList = helper.getAllProfiles();
         }
         if (profileList.size() > 0) {
             Collections.sort(profileList);
@@ -85,7 +85,7 @@ public class AddStylusManuallyActivity extends STimerBaseActivity {
             stylus.setId(helper.insertStylus(stylus));
         }
         Intent returnDataIntent = new Intent();
-        returnDataIntent.putExtra(MainActivity.STYLUS_ID_RETURN_KEY, stylus.getId());
+        returnDataIntent.putExtra(MainActivity.STYLUS_ID_KEY, stylus.getId());
         setResult(RESULT_OK, returnDataIntent);
         finish();
     }
