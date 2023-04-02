@@ -1,6 +1,7 @@
 <resources>
 
     <string name="preference_file_key">net.prsv.stimer.PREFERENCE_FILE_KEY</string>
+    <string name="preferences">Preferences</string>
 
     <string name="app_name">Stylus Timer</string>
 
@@ -35,6 +36,7 @@
     <string name="button_set_custom_threshold">Set custom threshold</string>
     <string name="button_delete">Delete cartridge</string>
     <string name="button_return">Return to the main screen</string>
+    <string name="button_save_preferences">Save preferences</string>
 
     <string name="tv_profile">Profile: %s</string>
     <string name="tv_vtf">VTF: %.2fg</string>
@@ -50,6 +52,9 @@
     <string name="tv_stylus_profile">Stylus profile:</string>
     <string name="tv_tracking_force">Vertical tracking force (grams):</string>
     <string name="tv_custom_threshold">Custom threshold (hours). If not set to 0, this value would override the default threshold for the selected stylus profile:</string>
+    <string name="tv_custom_length_explanation">Use the following options to override default values for side and LP length used by the app (21 and 42 minutes respectively). Set to 0 to return to default values.</string>
+    <string name="tv_custom_side">Custom side length (in minutes):</string>
+    <string name="tv_custom_lp">Custom LP length (in minutes):</string>
 
     <string name="et_cartridge_name">Enter cartridge name here</string>
 
