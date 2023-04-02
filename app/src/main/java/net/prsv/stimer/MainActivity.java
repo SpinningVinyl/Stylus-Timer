@@ -72,7 +72,7 @@ public class MainActivity extends STimerBaseActivity implements EditStylusClickL
                 Toast.makeText(this, R.string.error_adding_cartridge, Toast.LENGTH_LONG).show();
             } else {
                 try (DataHelper helper = new DataHelper()) {
-                    Stylus stylus = helper.getStylusById(stylusID);
+                    Stylus stylus = helper.getStylus(stylusID);
                     adapter.addToDataSet(stylus);
                     adapter.notifyItemInserted(adapter.getItemCount() - 1);
                 }
@@ -80,16 +80,23 @@ public class MainActivity extends STimerBaseActivity implements EditStylusClickL
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     private void editResultHandler(@NonNull ActivityResult result) {
-            try(DataHelper helper = new DataHelper()) {
-                ArrayList<Stylus> styli = helper.getAllStyli();
-                adapter.clearDataSet();
-                for (Stylus stylus : styli) {
-                    adapter.addToDataSet(stylus);
+        if(result.getResultCode() == Activity.RESULT_OK) {
+            Intent returnIntent = result.getData();
+            assert returnIntent != null;
+            int returnCode = returnIntent.getIntExtra(RETURN_RESULT_KEY, -1);
+            int adapterPosition = returnIntent.getIntExtra(ADAPTER_POSITION_KEY, -1);
+            if (returnCode == RESULT_EDIT_STYLUS) {
+                try(DataHelper helper = new DataHelper()) {
+                    int stylusId = returnIntent.getIntExtra(STYLUS_ID_KEY, -1);
+                    adapter.replaceItemInDataSet(adapterPosition, helper.getStylus(stylusId));
+                    adapter.notifyItemChanged(adapterPosition);
                 }
-                adapter.notifyDataSetChanged();
+            } else if (returnCode == RESULT_DELETE_STYLUS) {
+                adapter.removeFromDataSet(adapterPosition);
+                adapter.notifyItemRemoved(adapterPosition);
             }
+        }
     }
 
     private void prepareStylusViewAdapter() {
