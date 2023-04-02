@@ -9,4 +9,10 @@
         android:title="@string/menu_add_stylus"
         android:icon="@drawable/baseline_add_circle_outline_black_48"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/action_preferences"
+        android:orderInCategory="200"
+        android:title="@string/menu_preferences"
+        android:icon="@drawable/outline_settings_applications_black_48"
+        app:showAsAction="collapseActionView" />
 </menu>
