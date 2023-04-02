@@ -194,6 +194,14 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
         mStyli.add(stylus);
     }
 
+    protected void replaceItemInDataSet(int index, Stylus stylus) {
+        mStyli.set(index, stylus);
+    }
+
+    protected void removeFromDataSet(int index) {
+        mStyli.remove(index);
+    }
+
 
     private int progressBarColor(int threshold, double hours) {
         double wear = hours / threshold;
