@@ -23,6 +23,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="@string/tv_cartridge_name"
+        android:labelFor="@+id/etCartridgeName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_manually_toolbar" />
 
@@ -47,6 +48,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="@string/tv_stylus_profile"
+        android:labelFor="@+id/spinnerProfiles"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etCartridgeName" />
 
@@ -68,6 +70,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="@string/tv_tracking_force"
+        android:labelFor="@+id/etTrackingForce"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerProfiles" />
 
@@ -86,13 +89,14 @@
         app:layout_constraintTop_toBottomOf="@+id/tvTfackingForce" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tvCustomThreshold"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:text="@string/tv_custom_threshold"
+        android:labelFor="@+id/etCustomThreshold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etTrackingForce" />
@@ -109,7 +113,7 @@
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/tvCustomThreshold"
         tools:text="0" />
 
     <Button
