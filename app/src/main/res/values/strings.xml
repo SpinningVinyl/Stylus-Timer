@@ -52,7 +52,7 @@
     <string name="tv_stylus_profile">Stylus profile:</string>
     <string name="tv_tracking_force">Vertical tracking force (grams):</string>
     <string name="tv_custom_threshold">Custom threshold (hours). If not set to 0, this value would override the default threshold for the selected stylus profile:</string>
-    <string name="tv_custom_length_explanation">Use the following options to override default values for side and LP length used by the app (21 and 42 minutes respectively). Set to 0 to return to default values.</string>
+    <string name="tv_custom_length_explanation">Use the following options to override default values for side and LP length used by the app (21 and 42 minutes respectively). Set to 0 to restore default values.</string>
     <string name="tv_custom_side">Custom side length (in minutes):</string>
     <string name="tv_custom_lp">Custom LP length (in minutes):</string>
 
