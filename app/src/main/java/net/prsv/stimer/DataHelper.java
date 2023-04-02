@@ -74,7 +74,7 @@ public class DataHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public ArrayList<StylusProfile> getProfiles() {
+    public ArrayList<StylusProfile> getAllProfiles() {
         ArrayList<StylusProfile> result = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -93,6 +93,21 @@ public class DataHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         return result;
+    }
+
+    public StylusProfile getProfileById(int id) {
+        String query = "SELECT * FROM " + PROFILE_TABLE + " WHERE " + COLUMN_PROFILE_ID + " = ? ;";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(id)});
+
+        if (cursor.moveToFirst()) {
+            String name = cursor.getString(1);
+            int threshold = cursor.getInt(2);
+            cursor.close();
+            return new StylusProfile(id, name, threshold);
+        }
+        return null;
     }
 
     public void insertProfile(StylusProfile profile) {
