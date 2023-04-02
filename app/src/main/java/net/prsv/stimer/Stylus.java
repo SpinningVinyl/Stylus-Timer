@@ -34,6 +34,7 @@ public class Stylus implements Comparable<Stylus>, Serializable {
      * @param customThreshold custom threshold (in hours) for stylus replacement. If the custom threshold is equal to zero, the app uses profile's default threshold.
      */
     public Stylus(int id, String name, int profileId, double trackingForce, int customThreshold) {
+        if (customThreshold < 0) throw new IllegalArgumentException("Custom threshold cannot be negative!");
         this.id = id;
         this.name = name;
         this.profileId = profileId;
@@ -106,6 +107,7 @@ public class Stylus implements Comparable<Stylus>, Serializable {
      * @param customThreshold custom threshold for replacement (in hours)
      */
     public void setCustomThreshold(int customThreshold) {
+        if (customThreshold < 0) throw new IllegalArgumentException("Custom threshold cannot be negative!");
         this.customThreshold = customThreshold;
     }
 
