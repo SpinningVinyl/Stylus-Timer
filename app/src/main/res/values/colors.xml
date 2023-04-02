@@ -4,6 +4,7 @@
     <color name="gray">#FFEAEAEA</color>
 
     <color name="red">#FFFF0000</color>
+    <color name="orange">#FF9100</color>
     <color name="green">#FF00FF00</color>
 
     <color name="pb_wear_low">#FF00BFA5</color>
