@@ -26,6 +26,8 @@ import java.util.HashMap;
 public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.ViewHolder> {
 
     private final Context mContext;
+
+    private final EditStylusClickListener listener;
     private final ArrayList<Stylus> mStyli;
     private final HashMap<Integer, StylusProfile> mProfiles;
 
@@ -36,6 +38,7 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
 
     public StylusViewAdapter(Context context, @NonNull ArrayList<Stylus> styli, @NonNull ArrayList<StylusProfile> stylusProfiles) {
         this.mContext = context;
+        this.listener = (EditStylusClickListener) context;
         this.mStyli = styli;
         this.mProfiles = new HashMap<>();
         for (StylusProfile sp : stylusProfiles) {
@@ -100,8 +103,10 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
 
     private void setButtonListeners(@NonNull ViewHolder holder) {
 
+        // listener for the image button
         holder.ibEdit.setOnClickListener(v -> {
-
+            Stylus stylus = mStyli.get(holder.getAdapterPosition());
+            listener.callEditStylusActivity(stylus.getId(), holder.getAdapterPosition());
         });
 
         // listener for the "+SIDE" button
