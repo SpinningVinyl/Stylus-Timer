@@ -43,7 +43,7 @@ public class AddStylusFromListActivity extends STimerBaseActivity {
         mContext = this;
 
         // set up the action bar and enable the back button
-        Toolbar toolbar = findViewById(R.id.add_from_list_toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar_add_from_list);
         setSupportActionBar(toolbar);
         ActionBar supportActionBar = getSupportActionBar();
         assert supportActionBar != null;

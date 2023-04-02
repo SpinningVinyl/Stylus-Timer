@@ -1,6 +1,5 @@
 package net.prsv.stimer;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -39,7 +38,7 @@ public class MainActivity extends STimerBaseActivity implements EditStylusClickL
         setContentView(R.layout.activity_main);
 
         // set the custom toolbar
-        Toolbar toolbar = findViewById(R.id.main_toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
 
         // find the RecyclerView

@@ -7,7 +7,7 @@
     tools:context=".AddStylusManuallyActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/add_manually_toolbar"
+        android:id="@+id/toolbar_add_manual"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
@@ -25,7 +25,7 @@
         android:text="@string/tv_cartridge_name"
         android:labelFor="@+id/etCartridgeName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_manually_toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_add_manual" />
 
     <EditText
         android:id="@+id/etCartridgeName"

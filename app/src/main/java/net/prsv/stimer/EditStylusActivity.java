@@ -25,7 +25,7 @@ public class EditStylusActivity extends STimerBaseActivity {
         setContentView(R.layout.activity_edit_stylus);
 
         // set up the action bar but do not enable the back button
-        Toolbar toolbar = findViewById(R.id.stylus_props_toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar_stylus_props);
         setSupportActionBar(toolbar);
         ActionBar supportActionBar = getSupportActionBar();
         assert supportActionBar != null;

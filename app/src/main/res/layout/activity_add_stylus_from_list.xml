@@ -7,7 +7,7 @@
     tools:context=".AddStylusFromListActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/add_from_list_toolbar"
+        android:id="@+id/toolbar_add_from_list"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
@@ -39,7 +39,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_from_list_toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_add_from_list" />
 
     <Button
         android:id="@+id/btnOk"

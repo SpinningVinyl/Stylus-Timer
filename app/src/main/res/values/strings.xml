@@ -5,6 +5,7 @@
     <string name="app_name">Stylus Timer</string>
 
     <string name="menu_add_stylus">Add cartridge/stylus</string>
+    <string name="menu_preferences">App preferences</string>
 
     <string name="welcome_message_1">Welcome to the Stylus Timer app!</string>
     <string name="welcome_message_2">Press Continue to download stylus profile data.</string>

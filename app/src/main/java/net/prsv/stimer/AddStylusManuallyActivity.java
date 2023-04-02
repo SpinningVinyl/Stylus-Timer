@@ -27,7 +27,7 @@ public class AddStylusManuallyActivity extends STimerBaseActivity {
         setContentView(R.layout.activity_add_stylus_manually);
 
         // set up the action bar and enable the back button
-        Toolbar toolbar = findViewById(R.id.add_manually_toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar_add_manual);
         setSupportActionBar(toolbar);
         ActionBar supportActionBar = getSupportActionBar();
         assert supportActionBar != null;
