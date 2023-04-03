@@ -26,6 +26,11 @@ public class Stylus implements Comparable<Stylus>, Serializable {
      * */
     public Stylus() {}
 
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     * @param that the reference object with which to compare.
+     * @return {@code true} if this object is the same as the {@code that} argument; {@code false} otherwise.
+     */
     @Override
     public boolean equals(Object that) {
         if (this == that) return true;
@@ -34,6 +39,10 @@ public class Stylus implements Comparable<Stylus>, Serializable {
         return profileId == stylus.profileId && Double.compare(stylus.trackingForce, trackingForce) == 0 && Double.compare(stylus.hours, hours) == 0 && customThreshold == stylus.customThreshold && name.equals(stylus.name);
     }
 
+    /**
+     * Returns a hash code value for the {@link Stylus} object.
+     * @return a hash code value for the object
+     */
     @Override
     public int hashCode() {
         return Objects.hash(name, profileId, trackingForce, hours, customThreshold);
@@ -151,6 +160,14 @@ public class Stylus implements Comparable<Stylus>, Serializable {
         this.id = id;
     }
 
+    /**
+     * Compares this object with the specified object for order.
+     * Returns a negative integer, zero, or a positive integer as this object is less than,
+     * equal to, or greater than the specified object.
+     * @param that the object to be compared.
+     * @return a negative integer, zero, or a positive integer as this object is less than,
+     * equal to, or greater than the specified object.
+     */
     @Override
     public int compareTo(Stylus that) {
         return this.name.compareTo(that.name);

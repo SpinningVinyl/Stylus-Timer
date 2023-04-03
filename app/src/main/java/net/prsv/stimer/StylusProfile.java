@@ -59,6 +59,14 @@ public class StylusProfile implements Comparable<StylusProfile> {
         return this.name + " (" + this.threshold + " hrs)";
     }
 
+    /**
+     * Compares this object with the specified object for order.
+     * Returns a negative integer, zero, or a positive integer as this object is less than,
+     * equal to, or greater than the specified object.
+     * @param that the object to be compared.
+     * @return a negative integer, zero, or a positive integer as this object is less than,
+     * equal to, or greater than the specified object.
+     */
     @Override
     public int compareTo(StylusProfile that) {
         if (this.threshold == that.threshold) {
@@ -67,6 +75,11 @@ public class StylusProfile implements Comparable<StylusProfile> {
         return Integer.compare(this.threshold, that.threshold);
     }
 
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     * @param that the reference object with which to compare.
+     * @return {@code true} if this object is the same as the {@code that} argument; {@code false} otherwise.
+     */
     @Override
     public boolean equals(Object that) {
         if (this == that) return true;
@@ -75,6 +88,10 @@ public class StylusProfile implements Comparable<StylusProfile> {
         return id == profile.id && threshold == profile.threshold && Objects.equals(name, profile.name);
     }
 
+    /**
+     * Returns a hash code value for the {@link StylusProfile} object.
+     * @return a hash code value for the object
+     */
     @Override
     public int hashCode() {
         return Objects.hash(id, name, threshold);
