@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class DataHelper extends SQLiteOpenHelper {
 
     public static final String DB_FILE = "styli.db";
+    public static final String TEST_DB_FILE = "test.db";
 
     public static final String PROFILE_TABLE = "PROFILE_TABLE";
     public static final String COLUMN_PROFILE_ID = "PROFILE_ID";
@@ -36,6 +37,9 @@ public class DataHelper extends SQLiteOpenHelper {
         super(STimerApp.getContext(), DB_FILE, null, 1);
     }
 
+    public DataHelper(String dbFile) {
+        super(STimerApp.getContext(), dbFile, null, 1);
+    }
 
     /**
      * Retrieves a single {@link Stylus} object from the database.
@@ -194,6 +198,7 @@ public class DataHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_STYLUS_CUSTOM_THRESHOLD, stylus.getCustomThreshold());
         cv.put(COLUMN_STYLUS_HOURS, stylus.getHours());
         db.update(STYLUS_TABLE, cv, COLUMN_STYLUS_ID + " = ?", new String[]{String.valueOf(stylus.getId())});
+        db.close();
     }
 
     /**
@@ -205,6 +210,20 @@ public class DataHelper extends SQLiteOpenHelper {
         db.delete(STYLUS_TABLE, COLUMN_STYLUS_ID + " = ?", new String[]{String.valueOf(id)});
     }
 
+    public void deleteAllStyli() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(STYLUS_TABLE, null, null);
+    }
+
+    public void deleteProfile(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(PROFILE_TABLE, COLUMN_PROFILE_ID + " = ?", new String[]{String.valueOf(id)});
+    }
+
+    public void deleteAllProfiles() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(PROFILE_TABLE, null, null);
+    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
