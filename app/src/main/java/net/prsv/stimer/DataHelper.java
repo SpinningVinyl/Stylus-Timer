@@ -210,16 +210,26 @@ public class DataHelper extends SQLiteOpenHelper {
         db.delete(STYLUS_TABLE, COLUMN_STYLUS_ID + " = ?", new String[]{String.valueOf(id)});
     }
 
+    /**
+     * Delete all styli records from the database.
+     */
     public void deleteAllStyli() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(STYLUS_TABLE, null, null);
     }
 
+    /**
+     * Delete a profile record from the database.
+     * @param id ID of the record to be deleted.
+     */
     public void deleteProfile(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(PROFILE_TABLE, COLUMN_PROFILE_ID + " = ?", new String[]{String.valueOf(id)});
     }
 
+    /**
+     * Delete all profile records from the database.
+     */
     public void deleteAllProfiles() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(PROFILE_TABLE, null, null);
