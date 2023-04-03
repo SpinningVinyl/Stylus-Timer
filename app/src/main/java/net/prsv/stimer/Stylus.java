@@ -3,6 +3,7 @@ package net.prsv.stimer;
 import androidx.annotation.NonNull;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * {@link Stylus} represents a single stylus/cartridge in the database.
@@ -24,6 +25,19 @@ public class Stylus implements Comparable<Stylus>, Serializable {
      * This empty default constructor is required for calls to DataSnapshot.getValue(Stylus.class)
      * */
     public Stylus() {}
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) return true;
+        if (that == null || getClass() != that.getClass()) return false;
+        Stylus stylus = (Stylus) that;
+        return profileId == stylus.profileId && Double.compare(stylus.trackingForce, trackingForce) == 0 && Double.compare(stylus.hours, hours) == 0 && customThreshold == stylus.customThreshold && name.equals(stylus.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, profileId, trackingForce, hours, customThreshold);
+    }
 
     /**
      * Create a new Stylus object.
@@ -147,5 +161,6 @@ public class Stylus implements Comparable<Stylus>, Serializable {
     public String toString() {
         return this.name;
     }
+
 
 }

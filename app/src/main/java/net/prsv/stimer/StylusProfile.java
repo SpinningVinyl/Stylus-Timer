@@ -2,6 +2,8 @@ package net.prsv.stimer;
 
 import androidx.annotation.NonNull;
 
+import java.util.Objects;
+
 /**
  * {@link StylusProfile} represents a single stylus profile in the database.
  * Each stylus profile has three parameters: ID, name and threshold (the number of hours a stylus of this profile can be used before replacement)
@@ -64,4 +66,18 @@ public class StylusProfile implements Comparable<StylusProfile> {
         }
         return Integer.compare(this.threshold, that.threshold);
     }
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) return true;
+        if (that == null || getClass() != that.getClass()) return false;
+        StylusProfile profile = (StylusProfile) that;
+        return id == profile.id && threshold == profile.threshold && Objects.equals(name, profile.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, threshold);
+    }
+
 }
