@@ -43,8 +43,20 @@ public class PreferencesActivity extends STimerBaseActivity {
     }
 
     private void savePreferences(View v) {
-        int customSide = Math.max(Integer.parseInt(etCustomSide.getText().toString()), 0);
-        int customLP = Math.max(Integer.parseInt(etCustomLP.getText().toString()), 0);
+        // grab the values from the EditText widgets
+        String customSideString = etCustomSide.getText().toString();
+        if (!STimerApp.isInteger(customSideString)) {
+            customSideString = "0";
+        }
+        int customSide = Integer.parseInt(customSideString);
+
+        String customLpString = etCustomLP.getText().toString();
+        if (!STimerApp.isInteger(customLpString)) {
+            customLpString = "0";
+        }
+        int customLP = Integer.parseInt(customLpString);
+
+        // save preferences
         preferences.setCustomSide(customSide);
         preferences.setCustomLP(customLP);
         finish();
