@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public abstract class STimerBaseActivity extends AppCompatActivity {
 
-
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

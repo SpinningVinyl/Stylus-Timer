@@ -50,10 +50,18 @@ public class STimerPreferences {
         return instance;
     }
 
+    /**
+     * Returns the custom length of one LP side.
+     * @return the custom length of one LP side if set, 0 otherwise.
+     */
     protected int getCustomSide() {
         return customSide;
     }
 
+    /**
+     * Returns the custom length of one LP.
+     * @return the custom length of one LP if set, 0 otherwise.
+     */
     protected int getCustomLP() {
         return customLP;
     }
@@ -62,10 +70,18 @@ public class STimerPreferences {
         return dbVersion;
     }
 
+    /**
+     * Checks whether the initial setup process has been completed.
+     * @return {@code true} if the setup process is complete, {@code false} otherwise.
+     */
     protected boolean isSetupComplete() {
         return setupComplete;
     }
 
+    /**
+     * Sets the length of one LP side and saves it to the {@link SharedPreferences}.
+     * @param length length of one LP side (in minutes).
+     */
     protected void setCustomSide(int length) {
         customSide = length;
         SharedPreferences.Editor editor = preferences.edit();
@@ -80,6 +96,10 @@ public class STimerPreferences {
         editor.apply();
     }
 
+    /**
+     * Sets the length of one LP and saves it to the {@link SharedPreferences}.
+     * @param length length of one LP (in minutes).
+     */
     protected void setCustomLP(int length) {
         customLP = length;
         SharedPreferences.Editor editor = preferences.edit();
@@ -87,6 +107,9 @@ public class STimerPreferences {
         editor.apply();
     }
 
+    /**
+     * Completes the initial setup.
+     */
     protected void completeSetup() {
         SharedPreferences.Editor editor = preferences.edit();
         setupComplete = true;
