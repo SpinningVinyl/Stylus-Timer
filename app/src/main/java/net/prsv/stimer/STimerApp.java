@@ -37,20 +37,30 @@ public class STimerApp extends Application {
         System.exit(0);
     }
 
-    public static boolean isInteger(String s) {
-        if (s == null) return false;
+    /**
+     * Checks whether a {@code String} can be safely converted to an {@code int} using {@code Integer.parseInt()}.
+     * @param str a String to be checked
+     * @return {@code true} if {@code str} can be safely converted to an {@code int}, or {@code false} otherwise.
+     */
+    public static boolean isInteger(String str) {
+        if (str == null) return false;
         try {
-            Integer.parseInt(s);
+            Integer.parseInt(str);
         } catch(NumberFormatException e) {
             return false;
         }
         return true;
     }
 
-    public static boolean isDouble(String s) {
-        if (s == null) return false;
+    /**
+     * Checks whether a {@code String} can be safely converted to a {@code double} using {@code Double.parseDouble()}.
+     * @param str a String to be checked
+     * @return {@code true} if {@code str} can be safely converted to an {@code double}, or {@code false} otherwise.
+     */
+    public static boolean isDouble(String str) {
+        if (str == null) return false;
         try {
-            Double.parseDouble(s);
+            Double.parseDouble(str);
         } catch(NumberFormatException e) {
             return false;
         }
