@@ -90,7 +90,11 @@ public class EditStylusActivity extends STimerBaseActivity {
     }
 
     private void setCustomThreshold(View v) {
-        int customThreshold = Integer.parseInt(etPropsCustomThreshold.getText().toString());
+        String customThresholdString = etPropsCustomThreshold.getText().toString();
+        if (!STimerApp.isInteger(customThresholdString)) {
+            customThresholdString = "0";
+        }
+        int customThreshold = Integer.parseInt(customThresholdString);
         stylus.setCustomThreshold(customThreshold);
         try(DataHelper helper = new DataHelper()) {
             helper.updateStylus(stylus);

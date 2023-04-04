@@ -75,8 +75,16 @@ public class AddStylusManuallyActivity extends STimerBaseActivity {
             Toast.makeText(this, R.string.error_name_empty, Toast.LENGTH_LONG).show();
             return;
         }
-        double trackingForce = Double.parseDouble(etTrackingForce.getText().toString());
-        int customThreshold = Math.max(Integer.parseInt(etCustomThreshold.getText().toString()), 0);
+        String trackingForceString = etTrackingForce.getText().toString();
+        if (!STimerApp.isDouble(trackingForceString)) {
+            trackingForceString = "1.75";
+        }
+        double trackingForce = Double.parseDouble(trackingForceString);
+        String customThresholdString = etCustomThreshold.getText().toString();
+        if (!STimerApp.isInteger(customThresholdString)) {
+            customThresholdString = "0";
+        }
+        int customThreshold = Integer.parseInt(customThresholdString);
         StylusProfile profile = (StylusProfile) spinnerProfiles.getSelectedItem();
         assert profile != null;
         int profileId = profile.getId();
