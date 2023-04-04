@@ -34,7 +34,7 @@ public class STimerApp extends Application {
         ComponentName componentName = intent.getComponent();
         Intent mainIntent = Intent.makeRestartActivityTask(componentName);
         getContext().startActivity(mainIntent);
-        Runtime.getRuntime().exit(0);
+        System.exit(0);
     }
 
     public static boolean isInteger(String s) {
