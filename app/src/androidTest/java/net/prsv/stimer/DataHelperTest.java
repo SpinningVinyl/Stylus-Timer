@@ -95,20 +95,20 @@ public class DataHelperTest {
     @Test
     public void deleteStylus() {
         helper.deleteStylus(stylus1.getId());
-        helper.deleteStylus(stylus2.getId());
-        helper.deleteStylus(stylus3.getId());
         assertNull(helper.getStylus(stylus1.getId()));
+        helper.deleteStylus(stylus2.getId());
         assertNull(helper.getStylus(stylus2.getId()));
+        helper.deleteStylus(stylus3.getId());
         assertNull(helper.getStylus(stylus3.getId()));
     }
 
     @Test
     public void deleteProfile() {
         helper.deleteProfile(profile1.getId());
-        helper.deleteProfile(profile2.getId());
-        helper.deleteProfile(profile3.getId());
         assertNull(helper.getProfile(profile1.getId()));
+        helper.deleteProfile(profile2.getId());
         assertNull(helper.getProfile(profile2.getId()));
+        helper.deleteProfile(profile3.getId());
         assertNull(helper.getProfile(profile3.getId()));
     }
 
