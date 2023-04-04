@@ -28,6 +28,9 @@ public class STimerApp extends Application {
         return mContext;
     }
 
+    /**
+     * Restarts the application.
+     */
     public static void restart() {
         PackageManager packageManager = getContext().getPackageManager();
         Intent intent = packageManager.getLaunchIntentForPackage(getContext().getPackageName());
