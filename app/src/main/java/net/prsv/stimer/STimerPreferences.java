@@ -23,6 +23,9 @@ public class STimerPreferences {
     public final static String RTDB_CARTRIDGES_PATH = "Cartridges";
     public final static String RTDB_PROFILES_PATH = "Profiles";
 
+    // reserved for future use ;-)
+    public final static String RTDB_META_PATH = "Metadata";
+
     /**
      * Private constructor means that only one instance of this class can exist.
      */
