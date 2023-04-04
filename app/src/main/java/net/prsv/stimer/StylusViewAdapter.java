@@ -163,7 +163,11 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
 
             // OK button + event handler
             dialogBuilder.setPositiveButton(R.string.button_ok, (dialog, which) -> {
-                int customTime = Integer.parseInt(input.getText().toString());
+                String customTimeString = input.getText().toString();
+                if (!STimerApp.isInteger(customTimeString)) {
+                    customTimeString = "0";
+                }
+                int customTime = Integer.parseInt(customTimeString);
                 double customTimeInHours = (double) customTime / 60;
                 stylus.setHours(stylus.getHours() + customTimeInHours);
                 try(DataHelper helper = new DataHelper()) {
