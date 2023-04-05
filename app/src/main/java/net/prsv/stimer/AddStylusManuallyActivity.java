@@ -15,12 +15,22 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * This activity allows users to add cartridges by manually filling in the required fields.
+ */
 public class AddStylusManuallyActivity extends STimerBaseActivity {
 
     ArrayList<StylusProfile> profileList = new ArrayList<>();
     private Spinner spinnerProfiles;
     private EditText etCartridgeName, etTrackingForce, etCustomThreshold;
 
+    /**
+     * Prepares activity for use.
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +79,9 @@ public class AddStylusManuallyActivity extends STimerBaseActivity {
         return true;
     }
 
+    /**
+     * onClickListener for the OK button.
+     */
     private void saveStylus(View v) {
         String name = etCartridgeName.getText().toString();
         if (name.trim().equals("")) {

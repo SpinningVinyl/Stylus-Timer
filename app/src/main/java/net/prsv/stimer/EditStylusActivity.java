@@ -10,6 +10,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 
+/**
+ * This activity allows users to edit cartridge properties.
+ */
 public class EditStylusActivity extends STimerBaseActivity {
 
     private Stylus stylus;
@@ -63,6 +66,9 @@ public class EditStylusActivity extends STimerBaseActivity {
 
     }
 
+    /**
+     * Initializes the views that show the parameters of the cartridge.
+     */
     private void initDisplay() {
         tvCartridgePropsName.setText(stylus.getName());
         tvStylusPropsUsage.setText(String.format(getString(R.string.tv_props_usage), stylus.getHours()));
@@ -70,6 +76,9 @@ public class EditStylusActivity extends STimerBaseActivity {
         etPropsCustomThreshold.setText(String.valueOf(stylus.getCustomThreshold()));
     }
 
+    /**
+     * onClickListener for btnResetHours
+     */
     private void resetHours(View v) {
         stylus.setHours(0);
         try(DataHelper helper = new DataHelper()) {
@@ -78,6 +87,9 @@ public class EditStylusActivity extends STimerBaseActivity {
         initDisplay();
     }
 
+    /**
+     * onClickListener for btnDeleteCartridge
+     */
     private void deleteCartridge(View v) {
         try(DataHelper helper = new DataHelper()) {
             helper.deleteStylus(stylus.getId());
@@ -89,6 +101,9 @@ public class EditStylusActivity extends STimerBaseActivity {
         }
     }
 
+    /**
+     * onClickListener for btnSetCustomThreshold
+     */
     private void setCustomThreshold(View v) {
         String customThresholdString = etPropsCustomThreshold.getText().toString();
         if (!STimerApp.isInteger(customThresholdString)) {
@@ -102,6 +117,9 @@ public class EditStylusActivity extends STimerBaseActivity {
         initDisplay();
     }
 
+    /**
+     * onClickListener for btnReturn
+     */
     private void returnToMain(View v) {
         Intent returnDataIntent = new Intent();
         returnDataIntent.putExtra(MainActivity.RETURN_RESULT_KEY, MainActivity.RESULT_EDIT_STYLUS);

@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+/**
+ * This activity allows users to change application preferences.
+ */
 public class PreferencesActivity extends STimerBaseActivity {
 
     private final STimerPreferences preferences = STimerPreferences.getInstance();
@@ -42,6 +45,9 @@ public class PreferencesActivity extends STimerBaseActivity {
 
     }
 
+    /**
+     * onClickListener for btnSavePreferences
+     */
     private void savePreferences(View v) {
         // grab the values from the EditText widgets
         String customSideString = etCustomSide.getText().toString();

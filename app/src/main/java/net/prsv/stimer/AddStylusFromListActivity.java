@@ -26,6 +26,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * This activity allows users to add cartridges by selecting them from a precompiled list.
+ */
 public class AddStylusFromListActivity extends STimerBaseActivity {
 
     private final ArrayList<Stylus> stylusList = new ArrayList<>();
@@ -34,6 +37,13 @@ public class AddStylusFromListActivity extends STimerBaseActivity {
 
     private Context mContext;
 
+    /**
+     * Prepares activity for use.
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +69,9 @@ public class AddStylusFromListActivity extends STimerBaseActivity {
 
     }
 
+    /**
+     * Downloads cartridge data from Firebase RTDB.
+     */
     private void fetchCartridgeData() {
         final AtomicBoolean success = new AtomicBoolean(false);
 
@@ -114,6 +127,9 @@ public class AddStylusFromListActivity extends STimerBaseActivity {
         timeoutTimer.schedule(timeoutTask, 2000L);
     }
 
+    /**
+     * onClickListener for the OK button.
+     */
     public void returnData(View v) {
         Stylus stylus = (Stylus) spinnerStyli.getSelectedItem();
         int returnValue = -1;

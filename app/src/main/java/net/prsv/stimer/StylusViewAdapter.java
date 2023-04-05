@@ -22,7 +22,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
+/**
+ * Implementation of {@link RecyclerView.Adapter} used by the Stylus Timer app.
+ */
 public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.ViewHolder> {
 
     private final Context mContext;
@@ -36,6 +38,12 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
 
     private final STimerPreferences preferences = STimerPreferences.getInstance();
 
+    /**
+     * Constructor for creating a new {@link StylusViewAdapter} object
+     * @param context context to be used by the adapter
+     * @param styli an {@link ArrayList} containing {@link Stylus} objects
+     * @param stylusProfiles an {@link ArrayList} containing {@link StylusProfile} objects
+     */
     public StylusViewAdapter(Context context, @NonNull ArrayList<Stylus> styli, @NonNull ArrayList<StylusProfile> stylusProfiles) {
         this.mContext = context;
         this.listener = (EditStylusClickListener) context;
@@ -101,6 +109,9 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
 
     }
 
+    /**
+     * Sets button listeners for item in a {@link StylusViewAdapter.ViewHolder}
+     */
     private void setButtonListeners(@NonNull ViewHolder holder) {
 
         // listener for the image button
@@ -190,23 +201,43 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
         return mStyli.size();
     }
 
+    /**
+     * Removes all items from the dataset
+     */
     protected void clearDataSet() {
         mStyli.clear();
     }
 
+    /**
+     * Adds a {@link Stylus} object to the dataset
+     * @param stylus object to be added to the dataset
+     */
     protected void addToDataSet(Stylus stylus) {
         mStyli.add(stylus);
     }
 
+    /**
+     * Replaces item in the dataset.
+     * @param index Index of the item to be replaced
+     * @param stylus the {@link Stylus} object to be inserted instead of an existing item
+     */
     protected void replaceItemInDataSet(int index, Stylus stylus) {
         mStyli.set(index, stylus);
     }
 
+    /**
+     * Removes an item from the dataset.
+     * @param index Index of the item to be removed.
+     */
     protected void removeFromDataSet(int index) {
         mStyli.remove(index);
     }
 
-
+    /**
+     * Determines the color of the progress bar based on the wear of a {@link Stylus}
+     * @param threshold threshold that will trigger the replacement warning
+     * @param hours hours of usage
+     */
     private int progressBarColor(int threshold, double hours) {
         double wear = hours / threshold;
         int color;
@@ -237,6 +268,9 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
         return String.format(mContext.getString(R.string.tv_wear_template), wearLevel);
     }
 
+    /**
+     * ViewHolder for {@link Stylus} objects
+     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         final TextView tvStylusName, tvStylusProfile, tvVTF, tvStylusUsage, tvStylusWear;
 
@@ -245,6 +279,9 @@ public class StylusViewAdapter extends RecyclerView.Adapter<StylusViewAdapter.Vi
         final ConstraintLayout clParentLayout;
         final ProgressBar pbWearBar;
 
+        /**
+         * Constructor for creating a new {@link StylusViewAdapter.ViewHolder} object
+         */
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvStylusName = itemView.findViewById(R.id.tvStylusName);

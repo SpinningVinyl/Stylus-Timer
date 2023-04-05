@@ -20,6 +20,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * This activity is called if the initial setup has not been completed yet.
+ */
 public class InitialSetupActivity extends STimerBaseActivity {
 
     private Button btnContinue;
@@ -34,12 +37,14 @@ public class InitialSetupActivity extends STimerBaseActivity {
 
         mContext = this;
 
+        // grab the views
         btnContinue = findViewById(R.id.btnContinue);
         tvWelcomeMessage1 = findViewById(R.id.tvWelcomeMessage1);
         tvWelcomeMessage2 = findViewById(R.id.tvWelcomeMessage2);
         ImageView ivSplash = findViewById(R.id.ivSplash);
         ivSplash.setClipToOutline(true);
 
+        // attach the onClickListener
         btnContinue.setOnClickListener(this::performSetup);
 
     }

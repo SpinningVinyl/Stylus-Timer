@@ -20,6 +20,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+/**
+ * Main activity of the application.
+ */
 public class MainActivity extends STimerBaseActivity implements EditStylusClickListener {
 
     private RecyclerView recycler;
@@ -32,6 +35,13 @@ public class MainActivity extends STimerBaseActivity implements EditStylusClickL
     public static int RESULT_DELETE_STYLUS = 101;
     public static int RESULT_EDIT_STYLUS = 102;
 
+    /**
+     * Prepares activity for use.
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +72,10 @@ public class MainActivity extends STimerBaseActivity implements EditStylusClickL
         editLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::editResultHandler);
     }
 
+    /**
+     * Handles data returned from {@link AddStylusFromListActivity} or {@link AddStylusManuallyActivity}
+     * @param result ActivityResult returned by the child activity
+     */
     private void addResultHandler(@NonNull ActivityResult result) {
         if (result.getResultCode() == Activity.RESULT_OK) {
             Intent returnIntent = result.getData();
@@ -79,6 +93,10 @@ public class MainActivity extends STimerBaseActivity implements EditStylusClickL
         }
     }
 
+    /**
+     * Handles data returned from {@link EditStylusActivity}
+     * @param result ActivityResult returned by the child activity
+     */
     private void editResultHandler(@NonNull ActivityResult result) {
         if(result.getResultCode() == Activity.RESULT_OK) {
             Intent returnIntent = result.getData();
@@ -98,6 +116,9 @@ public class MainActivity extends STimerBaseActivity implements EditStylusClickL
         }
     }
 
+    /**
+     * Initializes the {@link StylusViewAdapter}
+     */
     private void prepareStylusViewAdapter() {
         try(DataHelper helper = new DataHelper()) {
             ArrayList<StylusProfile> profiles = helper.getAllProfiles();
@@ -114,12 +135,20 @@ public class MainActivity extends STimerBaseActivity implements EditStylusClickL
         }
     }
 
+    /**
+     * Handles creation of the options menu.
+     * @param menu The options menu in which you place your items.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.app_bar, menu);
         return true;
     }
 
+    /**
+     * Performs necessary actions when user select an options item
+     * @param item The menu item that was selected.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // user selects the + option
@@ -161,6 +190,11 @@ public class MainActivity extends STimerBaseActivity implements EditStylusClickL
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Implementation of the {@link EditStylusClickListener} interface
+     * @param stylusId id of the stylus
+     * @param adapterPosition position of the item in the adapter
+     */
     @Override
     public void callEditStylusActivity(int stylusId, int adapterPosition) {
         Intent editStylusIntent = new Intent(this, EditStylusActivity.class);
