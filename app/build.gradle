@@ -31,6 +31,8 @@ android {
 
 dependencies {
 
+    // necessary for JavaDoc generation
+    // implementation files('/home/pavel/Android/Sdk/platforms/android-33/android.jar')
 
     // Navigation component
     def nav_version = "2.5.3"
